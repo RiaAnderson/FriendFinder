@@ -1,11 +1,6 @@
-//Linking our routes to a series of "data" sources
 var friends = require("../data/friends.js");
 
 module.exports = function (app) {
-
-    // app.get('/', function (req, res) {
-    //     res.json(path.join(__dirname, './home.html'))
-    // });
 
     app.get('/api/friends', function (req, res) {
         res.json(friends);
@@ -27,16 +22,14 @@ module.exports = function (app) {
 
         console.log(newScore);
 
-        //Compare new user dataScore to the datascores in the tableData
-        for (var i = 0; i < friends.length; i++) {
-            //Store existing Friends from tableData into a variable "friend"
+          for (var i = 0; i < friends.length; i++) {
+
             var friend = friends[i];
             console.log(friend.name);
             totalDiff = 0
 
             for (var j = 0; j < friend.scores[j]; j++) {
-
-                //Store the absolute value of the differences 
+                
                 totalDiff += Math.abs(parseInt(newScore[j]) - parseInt(friend.scores[j]));
 
                 if (totalDiff <= bestFriend.friendDiff) {
@@ -50,6 +43,5 @@ module.exports = function (app) {
 
         console.log(bestFriend);
         res.json(bestFriend);
-
     })
 }
