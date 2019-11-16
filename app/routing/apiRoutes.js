@@ -22,7 +22,7 @@ module.exports = function (app) {
         console.log("req.body = ", req.body);
 
         var newFriend = req.body;
-        var newScore = userData.scores;
+        var newScore = newFriend.scores;
         var totalDiff = 0;
 
         console.log(newScore);
@@ -37,7 +37,7 @@ module.exports = function (app) {
             for (var j = 0; j < friend.scores[j]; j++) {
 
                 //Store the absolute value of the differences 
-                totaldiff += Math.abs(parseInt(newScore[j]) - parseInt(friend.scores[j]));
+                totalDiff += Math.abs(parseInt(newScore[j]) - parseInt(friend.scores[j]));
 
                 if (totalDiff <= bestFriend.friendDiff) {
                     bestFriend.name = friend.name;
@@ -47,6 +47,8 @@ module.exports = function (app) {
             }
         }
         friends.push(newFriend);
+
+        console.log(bestFriend);
         res.json(bestFriend);
 
     })
